@@ -1,17 +1,30 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import NavbarComp from "./components/NavbarComp";
 import PokemonList from './components/PokemonList'
 
+import firebase from './firebase'
+
 import './App.css';
 
-import data from './data'
 
 
 function App() {
+  const [pokemons, setPokemons] = useState([])
+
+  useEffect(() => {
+    const fetchData = async() => {
+      const db = firebase.firestore()
+      const data = await db.collection("pokemons").get()
+      setPokemons(data.docs.map(doc => doc.data()))
+    }
+
+    fetchData()    
+  }, [])
+
   return (
     <div>
       <NavbarComp />
-      <PokemonList data={data}/>
+      <PokemonList data={pokemons}/>
       
       
     </div>
