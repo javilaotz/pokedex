@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+/* pokemon list classes */
+.info{
+  margin-right: 10px;
+}
