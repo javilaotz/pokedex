@@ -24,6 +24,10 @@ const PokemonComponent = ({data}) => {
                             case 'Poison':
                                 tipoColor = 'secondary'
                                 break;
+                            
+                            case 'Water':
+                                tipoColor = 'primary'
+                                break;
 
                             default:
                                 tipoColor = 'light'
