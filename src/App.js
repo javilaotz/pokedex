@@ -12,11 +12,11 @@ function App() {
   useEffect(() => {
     const fetchData = async() => {
       const db = firebase.firestore()
-      const data = await db.collection("pokemons").get()
+      const data = await db.collection("pokemons").orderBy("id").limit(10).get()
       setPokemons(data.docs.map(doc => doc.data()))
     }
 
-    //fetchData()    
+    fetchData()    
   }, [])
 
   return (
