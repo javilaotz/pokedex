@@ -6,7 +6,6 @@ import {
 
 const NavbarComp = () => {
 
-
   return (
     <div>
       <Navbar color="dark" dark expand="md">
