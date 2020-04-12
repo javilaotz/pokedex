@@ -40,10 +40,13 @@ const PokemonComponent = ({data}) => {
         return badges
     }
 
+    const imageURL = `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${nametag.toLowerCase()}.png`
+    
     return (
       <Col sm="2" md="4" key={id}>
         <Card body>
           <CardTitle>{nametag}</CardTitle>
+          <img width="120" src={imageURL} alt="Bulbasaur sprite"/>
           <CardText>{getType(pokemonType)}</CardText>
           <Button>Go somewhere</Button>
         </Card>
