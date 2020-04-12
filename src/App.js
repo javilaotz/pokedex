@@ -6,8 +6,6 @@ import firebase from './firebase'
 
 import './App.css';
 
-
-
 function App() {
   const [pokemons, setPokemons] = useState([])
 
@@ -18,14 +16,13 @@ function App() {
       setPokemons(data.docs.map(doc => doc.data()))
     }
 
-    fetchData()    
+    //fetchData()    
   }, [])
 
   return (
     <div>
       <NavbarComp />
-      <PokemonList data={pokemons}/>
-      
+      <PokemonList data={pokemons}/>  
       
     </div>
   );
