@@ -1,11 +1,11 @@
 import React from 'react'
 import {Card, Button, CardTitle, CardText, Col, Badge} from 'reactstrap'
 
-const PokemonComponent = ({data}) => {
+const PokemonComponent = ({data, modal, setModal, setPokemonDetail}) => {
     const id            = data && data.id,
           name          = data && data.name,
           nametag       = name && name.english,
-          pokemonType   = data && data.type 
+          pokemonType   = data && data.type
 
     const getType = (PokeTypes) => {
         const badges = 
@@ -40,15 +40,27 @@ const PokemonComponent = ({data}) => {
         return badges
     }
 
-    const imageURL = `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${nametag.toLowerCase()}.png`
+    const handleModal = () => {
+        setPokemonDetail({
+            id   : id,
+            name : nametag,
+            type : getType(pokemonType)
+          })
+        setModal(!modal)
+    }
+
+    const imageURL = `https://img.pokemondb.net/sprites/home/normal/${nametag.toLowerCase()}.png`
+
+    //const imageURL = `https://play.pokemonshowdown.com/sprites/xyani/${nametag.toLowerCase()}.gif`
+    //[![Bulbasaur](https://img.pokemondb.net/sprites/home/normal/bulbasaur.png
     
     return (
-      <Col sm="2" md="4" key={id}>
+      <Col sm="4" md="4" lg="2" key={id}>
         <Card body>
           <CardTitle>{nametag}</CardTitle>
-          <img width="120" src={imageURL} alt="Bulbasaur sprite"/>
+          <img width="120" src={imageURL} alt={nametag}/>
           <CardText>{getType(pokemonType)}</CardText>
-          <Button>Go somewhere</Button>
+          <Button onClick={()=>handleModal()}>Go somewhere</Button>
         </Card>
       </Col>
     )
