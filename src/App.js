@@ -2,28 +2,29 @@ import React, {useState, useEffect} from 'react';
 import NavbarComp from "./components/NavbarComp";
 import PokemonList from './components/PokemonList'
 
-import firebase from './firebase'
+//import firebase from './firebase'
+import {fetchData} from './firebaseHandler'
 
 import './App.css';
 
 function App() {
   const [pokemons, setPokemons] = useState([])
 
-  useEffect(() => {
-    const fetchData = async() => {
-      const db = firebase.firestore()
-      const data = await db.collection("pokemons").orderBy("id").limit(10).get()
-      setPokemons(data.docs.map(doc => doc.data()))
-    }
+  const params = {
+    collection : 'pokemons',
+    orderBy : 'id',
+    limit : 10,
+    setter : setPokemons
+  }
 
-    fetchData()    
-  }, [])
+  useEffect(() => {
+    fetchData(params)   
+  }, [params])
 
   return (
     <div>
       <NavbarComp />
-      <PokemonList data={pokemons}/>  
-      
+      <PokemonList data={pokemons}/>        
     </div>
   );
 }

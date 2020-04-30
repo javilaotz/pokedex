@@ -55,7 +55,7 @@ const PokemonComponent = ({data, modal, setModal, setPokemonDetail}) => {
     //[![Bulbasaur](https://img.pokemondb.net/sprites/home/normal/bulbasaur.png
     
     return (
-      <Col sm="4" md="4" lg="2" key={id}>
+      <Col sm="4" md="4" lg="2">
         <Card body>
           <CardTitle>{nametag}</CardTitle>
           <img width="120" src={imageURL} alt={nametag}/>
